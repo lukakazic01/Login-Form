@@ -17,7 +17,12 @@
     </div>
     <div class="button text-center p-3">
     <button class="btn btn-success" type="submit">Log In</button>
-    </div> 
+    </div>
+    <% if(locals.logout){%>
+      <div class="alert alert-success m-0">
+        <p class="m-0"><%= logout %></p>
+      </div>
+    <% } %>  
    </form>
   </div>
 </div>

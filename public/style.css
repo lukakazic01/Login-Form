@@ -18,6 +18,7 @@ body{
     background-image: url('6711410.jpg');
     background-repeat: no-repeat;
     background-size: cover;
+    height: 100vh;
 }
 input{
     outline: none;
