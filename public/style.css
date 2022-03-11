@@ -1,0 +1,33 @@
+.main-container{
+    width: 100%;
+    max-width: 1000px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+.login-form{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    margin-top: 4.4rem;
+    width: 50%;
+    border: 1px solid white;
+}
+body{
+    background-image: url('6711410.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+input{
+    outline: none;
+    display: block;
+    padding: 0.3rem;
+}
+.label{
+    margin: 0.6rem 0;
+}
+.text-opacity{
+    opacity: 0.5;
+    color: white;
+}

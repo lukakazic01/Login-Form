@@ -1,0 +1,26 @@
+<%- include('header') -%>
+
+<div class="main-container">
+  <div class="login-form p-5">
+   <div class="text">
+    <h2 class="text-light">Login System</h2>
+    <span class="text-opacity">Log in for the existing user</span>
+   </div>
+   <form action="/route/login" method="post" class="form my-5">
+     <div class="login-inputs">
+       <label class="text-light label" for="email">Email:</label>
+       <input class="input form-control" type="email" id="email" placeholder="Enter email" name="email" required>
+     </div>
+     <div class="login-inputs">
+      <label class="text-light label" for="password">Password:</label>
+      <input class="input form-control" type="text" id="password" placeholder="Enter password" name="password" required>
+    </div>
+    <div class="button text-center p-3">
+    <button class="btn btn-success" type="submit">Log In</button>
+    </div> 
+   </form>
+  </div>
+</div>
+
+ <%- include('footer') -%>
+ 
