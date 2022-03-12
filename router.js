@@ -1,25 +1,30 @@
 const express = require('express');
 const router = express.Router();
-const credential = {
-    email: "admin@gmail.com",
-    password: "admin123"
-}
-
-router.post('/login', (req, res) => { 
-    if(req.body.email === credential.email && req.body.password === credential.password){
+const users = [];
+const bcrypt = require('bcrypt');
+router.post('/login', async (req, res) => { 
+    try{
+        const hashedPassword = await bcrypt.hash(req.body.password, 10);
+        users.push({
+            email: req.body.email,
+            password: hashedPassword
+        })
         req.session.user = req.body.email;
         res.redirect('/route/dashboard')
-    } else{
+    }
+    catch {
        res.render('invalidUser')
     }
+     console.log(users);
 })
 
 
 router.get('/dashboard', (req, res) => {
 if(req.session.user){
     res.render('dashboard', {user: req.session.user})
+    console.log(req.sessionID);
 }else{
-    res.send("Unauthorized user");
+    res.send("Cookie expired");
 }
 
 })
