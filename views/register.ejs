@@ -2,9 +2,9 @@
 
 <div class="main-container">
   <div class="login-form p-5">
-   <div class="text">
-    <h2 class="text-light">Login System</h2>
-    <span class="text-opacity">Log in for the existing user</span>
+   <div class="text text-center">
+    <h2 class="text-light">Register System</h2>
+    <span class="text-opacity">Register as a new user</span>
    </div>
    <form action="/route/register" method="post" class="form my-5">
     <div class="login-inputs">
@@ -22,8 +22,11 @@
     <div class="button text-center p-3">
     <button class="btn btn-success" type="submit">Register</button>
     </div>
+    <div class="text-center">
+    <a href="/route/login" class="text-light text-decoration-none">Already logged in?</a>
+    </div>
     <% if(locals.logout){%>
-      <div class="alert alert-success m-0">
+      <div class="alert alert-success mt-3">
         <p class="m-0"><%= logout %></p>
       </div>
     <% } %>  

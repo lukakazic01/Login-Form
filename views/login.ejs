@@ -18,6 +18,14 @@
     <div class="button text-center p-3">
     <button class="btn btn-success" type="submit">Log In</button>
     </div>
+    <div class="text-center">
+      <a href="/" class="text-light text-decoration-none">Not Registered?</a>
+      </div>
+    <% if(locals.invalidUser){%>
+      <div class="alert alert-danger mt-3">
+        <p class="m-0"><%= invalidUser %></p>
+      </div>
+    <% } %>  
    </form>
   </div>
 </div>
