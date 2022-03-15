@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const users = [];
 const bcrypt = require('bcrypt');
+
 router.post('/register', async (req, res) => { 
     try{
         const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -18,10 +19,11 @@ router.post('/register', async (req, res) => {
      console.log(users);
 });
 
-router.get('/login',  (req, res) => {
+router.get('/login', (req, res) => {
     res.render('login');
     
 });
+
 router.post('/login', async(req, res) => {
     const { password, email } = req.body;
     const doesPasswordsMatch= await bcrypt.compare(password, users[0].password);
@@ -36,7 +38,6 @@ router.post('/login', async(req, res) => {
     }
 });
 
-
 router.get('/dashboard', (req, res) => {
   if(req.session.user){
     res.render('dashboard', {user: req.session.user})
@@ -47,16 +48,16 @@ router.get('/dashboard', (req, res) => {
   }
 
 });
+
 router.get('/logout', (req, res) => {
-    req.session.destroy(function(err){
-        if(err){
-          res.send("Couldnt log out");
-        }
-        else{
-            res.clearCookie('connect.sid');
-            res.render('register', {logout: "Logged Out Successfully"});
-        }
-    });
-});
+   if(!req.session.user){
+       res.render('invalidUser');
+   } else {
+   req.session.destroy();
+   res.clearCookie('connect.sid');
+   res.render('register', {logout: "Logged Out Successfully"});
+   }  
+ });
+
 
 module.exports = router;
