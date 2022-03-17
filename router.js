@@ -20,22 +20,30 @@ router.post('/register', async (req, res) => {
 });
 
 router.get('/login', (req, res) => {
-    res.render('login');
-    
+        res.render('login');
 });
+
+router.get('/notRegistered',  (req, res) => {
+  res.render('notRegistered');
+})
 
 router.post('/login', async(req, res) => {
     const { password, email } = req.body;
-    const doesPasswordsMatch= await bcrypt.compare(password, users[0].password);
-    if(doesPasswordsMatch && email === users[0].email){
-        req.session.user = email;
-        res.redirect('/route/dashboard');  
-    } 
-    else {
-        setTimeout(() => {
-        res.render('login', {invalidUser: "Wrong email or password"});
-    }, 1000);
+    if(users.length === 0){
+      res.redirect('/route/notRegistered');
+    }else{
+      const doesPasswordsMatch= await bcrypt.compare(password, users[0].password);
+        if(doesPasswordsMatch && email === users[0].email){
+           req.session.user = email;
+           res.redirect('/route/dashboard');  
+        } 
+        else {
+          setTimeout(() => {
+            res.render('login', {invalidUser: "Wrong email or password"});
+          }, 1000);
+        }
     }
+    
 });
 
 router.get('/dashboard', (req, res) => {
