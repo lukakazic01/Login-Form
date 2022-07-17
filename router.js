@@ -32,6 +32,7 @@ router.post('/login', async(req, res) => {
     if(users.length === 0){
       res.redirect('/route/notRegistered');
     }else{
+      
       const doesPasswordsMatch= await bcrypt.compare(password, users[0].password);
         if(doesPasswordsMatch && email === users[0].email){
            req.session.user = email;
@@ -63,6 +64,7 @@ router.get('/logout', (req, res) => {
    } else {
    req.session.destroy();
    res.clearCookie('connect.sid');
+   users.splice(0,1);
    res.render('register', {logout: "Logged Out Successfully"});
    }  
  });
